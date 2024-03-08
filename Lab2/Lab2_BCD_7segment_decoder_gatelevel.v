@@ -1,0 +1,32 @@
+module Lab2_BCD_7segment_decoder_gatelevel (output [6:0] A, input [3:0] D);
+	wire [15:0] w;
+	wire not0,not1,not2,not3;
+	not(not0,D[0]);
+	not(not1,D[1]);
+	not(not2,D[2]);
+	not(not3,D[3]);
+	and(w[0],D[3],not2,not1);
+	and(w[1],not0,not2,not1);
+	and(w[2],not3,not1,not0);
+	and(w[3],not3,D[1],not0);
+	and(w[4],D[1],not2,not3);
+	and(w[5],D[2],not3,not1);
+	and(w[6],not3,D[1]);
+	and(w[7],not3,D[2],D[0]);
+	and(w[8],not2,not1,D[3]);
+	and(w[9],not3,not2);
+	and(w[10],not3,D[1],D[0]);
+	and(w[11],not2,not1);
+	and(w[12],not3,D[2]);
+	and(w[13],not3,D[0]);
+	and(w[14],not3,D[2],not1,D[0]);
+	and(w[15],not3,D[2],not0);
+	or(A[0],w[1],w[6],w[7],w[8]);
+	or(A[1],w[0],w[2],w[9],w[10]);
+	or(A[2],w[11],w[12],w[13]);
+	or(A[3],w[0],w[1],w[3],w[4],w[14]);
+	or(A[4],w[1],w[3]);
+	or(A[5],w[0],w[2],w[5],w[15]);
+	or(A[6],w[0],w[3],w[4],w[5]);
+endmodule 
+	
